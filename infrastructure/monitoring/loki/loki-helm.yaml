@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: loki
+    helm:
+      valueFiles:
+        - values.yaml
+    repoURL: https://grafana.github.io/loki/charts
+    targetRevision: 2.1.1
+  syncPolicy:
+    automated: {}
