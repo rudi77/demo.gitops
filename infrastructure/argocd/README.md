@@ -38,31 +38,15 @@ Change argocd-server service type to LoadBalancer
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-##Helm Charts
-To add a Helm chart repository in Argo CD, you need to create a ConfigMap containing the repository details.
-
-Here's an example of how to create a ConfigMap for the Prometheus Community Helm charts repository, which includes the Grafana chart:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-helm-repositories-cm
-  namespace: argocd
-data:
-  repositories: |
-    - url: https://prometheus-community.github.io/helm-charts
-      type: helm
-      name: prometheus-community
-```
-
-Apply the ConfigMap to your Kubernetes cluster:
-
-```bash
-kubectl apply -f helm-repositories-configmap.yaml
-```
-
-Restart the Argo CD pods to pick up the new ConfigMap:
-```bash
+###Restarting  ArgoCd Pods
+```sh
 kubectl -n argocd delete pods --selector app.kubernetes.io/name=argocd-server
+```
+
+##Helm Charts
+```sh
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add loki https://grafana.github.io/loki/charts
+helm repo update
 ```
