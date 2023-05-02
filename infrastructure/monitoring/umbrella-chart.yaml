@@ -1,0 +1,33 @@
+apiVersion: v2
+name: monitoring-umbrella
+description: A Helm chart for Kubernetes monitoring with Prometheus, Loki, and Grafana
+version: 0.1.0
+
+dependencies:
+  # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
+  - name: "kube-prometheus-stack"
+    condition: kube-prometheus-stack.enabled
+    repository: "https://prometheus-community.github.io/helm-charts"
+    version: "27.2.1"
+
+  # https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
+  - name: prometheus-blackbox-exporter
+    repository: "https://prometheus-community.github.io/helm-charts"
+    version: "4.13.0"
+
+  # https://grafana.com/docs/loki/latest/installation/helm/
+  - name: "loki-stack"
+    condition: loki-stack.enabled
+    repository: "https://grafana.github.io/helm-charts"
+    version: "2.4.1"
+
+  # https://github.com/prometheus-msteams/prometheus-msteams
+  - name: prometheus-msteams
+    condition: prometheus-msteams.enabled
+    repository: "https://prometheus-msteams.github.io/prometheus-msteams/"
+    version: "1.2.0"
+
+  - name: "dcgm-exporter"
+    condition: dcgm-exporter.enabled
+    repository: "file://../dcgm-exporter"
+    version: 2.4.0
