@@ -1,0 +1,15 @@
+kube-prometheus-stack:
+  enabled: true
+  # other kube-prometheus-stack configuration values
+
+prometheus-blackbox-exporter:
+  enabled: true
+  # other prometheus-blackbox-exporter configuration values
+
+loki-stack:
+  enabled: true
+  # other loki-stack configuration values
+
+prometheus-msteams:
+  enabled: true
+  # other prometheus-msteams configuration values
