@@ -27,7 +27,7 @@ dependencies:
     repository: "https://prometheus-msteams.github.io/prometheus-msteams/"
     version: "1.2.0"
 
-  - name: "dcgm-exporter"
-    condition: dcgm-exporter.enabled
-    repository: "file://../dcgm-exporter"
-    version: 2.4.0
+  # - name: "dcgm-exporter"
+  #   condition: dcgm-exporter.enabled
+  #   repository: "file://../dcgm-exporter"
+  #   version: 2.4.0
